@@ -12,10 +12,10 @@ terraform {
 # Configure the Akamai Provider
 provider "akamai" {
   config {
-    client_secret = "AKAMAI_JP_CLIENT_SECRET"
-    host = "AKAMAI_JP_HOST"
-    access_token = "AKAMAI_JP_ACCESS_TOKEN"
-    client_token = "AKAMAI_JP_CLIENT_TOKEN"
+    client_secret = var.AKAMAI_JP_CLIENT_SECRET
+    host = var.AKAMAI_JP_HOST
+    access_token = var.AKAMAI_JP_ACCESS_TOKEN
+    client_token = var.AKAMAI_JP_CLIENT_TOKEN
   }
 }
 
