@@ -1,0 +1,950 @@
+{
+  "rules": {
+    "name": "default",
+    "children": [
+      {
+        "name": "Standard TLS Auto DV",
+        "children": [],
+        "behaviors": [
+          {
+            "name": "autoDomainValidation",
+            "options": {
+              "autodv": ""
+            }
+          }
+        ],
+        "criteria": [],
+        "criteriaMustSatisfy": "all"
+      },
+      {
+        "name": "Augment insights",
+        "children": [
+          {
+            "name": "mPulse RUM",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "mPulse",
+                "options": {
+                  "enabled": true,
+                  "apiKey": "",
+                  "bufferSize": "",
+                  "configOverride": "",
+                  "requirePci": false,
+                  "titleOptional": "",
+                  "loaderVersion": "V10"
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Geolocation",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "edgeScape",
+                "options": {
+                  "enabled": false
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "requestType",
+                "options": {
+                  "matchOperator": "IS",
+                  "value": "CLIENT_REQ"
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Log delivery",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "report",
+                "options": {
+                  "logHost": false,
+                  "logReferer": false,
+                  "logUserAgent": false,
+                  "logAcceptLanguage": false,
+                  "logCookies": "OFF",
+                  "logCustomLogField": false
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          }
+        ],
+        "behaviors": [],
+        "criteria": [],
+        "criteriaMustSatisfy": "all"
+      },
+      {
+        "name": "Accelerate delivery",
+        "children": [
+          {
+            "name": "Origin connectivity",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "dnsAsyncRefresh",
+                "options": {
+                  "enabled": true,
+                  "timeout": "1h"
+                }
+              },
+              {
+                "name": "timeout",
+                "options": {
+                  "value": "5s"
+                }
+              },
+              {
+                "name": "readTimeout",
+                "options": {
+                  "value": "120s"
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Protocol Optimizations",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "enhancedAkamaiProtocol",
+                "options": {
+                  "display": ""
+                }
+              },
+              {
+                "name": "http2",
+                "options": {
+                  "enabled": ""
+                }
+              },
+              {
+                "name": "allowTransferEncoding",
+                "options": {
+                  "enabled": true
+                }
+              },
+              {
+                "name": "sureRoute",
+                "options": {
+                  "enabled": true,
+                  "type": "PERFORMANCE",
+                  "testObjectUrl": "/akamai/sureroute-test-object.html",
+                  "forceSslForward": false,
+                  "enableCustomKey": false,
+                  "raceStatTtl": "30m",
+                  "toHostStatus": "INCOMING_HH"
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Prefetching",
+            "children": [
+              {
+                "name": "Prefetching objects",
+                "children": [
+                  {
+                    "name": "Bots",
+                    "children": [],
+                    "behaviors": [
+                      {
+                        "name": "prefetch",
+                        "options": {
+                          "enabled": false
+                        }
+                      }
+                    ],
+                    "criteria": [
+                      {
+                        "name": "userAgent",
+                        "options": {
+                          "matchOperator": "IS_ONE_OF",
+                          "values": [
+                            "*bot*",
+                            "*crawl*",
+                            "*spider*"
+                          ],
+                          "matchWildcard": true,
+                          "matchCaseSensitive": false
+                        }
+                      }
+                    ],
+                    "criteriaMustSatisfy": "all"
+                  }
+                ],
+                "behaviors": [
+                  {
+                    "name": "prefetch",
+                    "options": {
+                      "enabled": true
+                    }
+                  }
+                ],
+                "criteria": [],
+                "criteriaMustSatisfy": "all"
+              },
+              {
+                "name": "Prefetchable objects",
+                "children": [],
+                "behaviors": [
+                  {
+                    "name": "prefetchable",
+                    "options": {
+                      "enabled": true
+                    }
+                  }
+                ],
+                "criteria": [
+                  {
+                    "name": "fileExtension",
+                    "options": {
+                      "matchOperator": "IS_ONE_OF",
+                      "values": [
+                        "css",
+                        "js",
+                        "jpg",
+                        "jpeg",
+                        "jp2",
+                        "png",
+                        "gif",
+                        "svg",
+                        "svgz",
+                        "webp",
+                        "eot",
+                        "woff",
+                        "woff2",
+                        "otf",
+                        "ttf"
+                      ],
+                      "matchCaseSensitive": false
+                    }
+                  }
+                ],
+                "criteriaMustSatisfy": "all"
+              }
+            ],
+            "behaviors": [],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Adaptive acceleration",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "adaptiveAcceleration",
+                "options": {
+                  "source": "mPulse",
+                  "titleHttp2ServerPush": "",
+                  "enablePush": true,
+                  "titlePreconnect": "",
+                  "enablePreconnect": true,
+                  "titlePreload": "",
+                  "preloadEnable": true,
+                  "titleRo": "",
+                  "enableRo": true
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          }
+        ],
+        "behaviors": [],
+        "criteria": [],
+        "criteriaMustSatisfy": "all"
+      },
+      {
+        "name": "Offload origin",
+        "children": [
+          {
+            "name": "Cached Content",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "caching",
+                "options": {
+                  "behavior": "CACHE_CONTROL_AND_EXPIRES",
+                  "defaultTtl": "3m",
+                  "mustRevalidate": false,
+                  "honorMustRevalidate": true,
+                  "honorPrivate": true,
+                  "enhancedRfcSupport": false
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "fileExtension",
+                "options": {
+                  "matchCaseSensitive": false,
+                  "matchOperator": "IS_ONE_OF",
+                  "values": [
+                    "css",
+                    "js",
+                    "eot",
+                    "woff",
+                    "woff2",
+                    "otf",
+                    "ttf",
+                    "jpg",
+                    "jpeg",
+                    "png",
+                    "gif",
+                    "webp",
+                    "jp2",
+                    "ico",
+                    "svg",
+                    "svgz",
+                    "doc",
+                    "docx",
+                    "odt",
+                    "aif",
+                    "aiff",
+                    "au",
+                    "avi",
+                    "bin",
+                    "bmp",
+                    "cab",
+                    "carb",
+                    "cct",
+                    "cdf",
+                    "class",
+                    "dcr",
+                    "dtd",
+                    "exe",
+                    "flv",
+                    "gcf",
+                    "gff",
+                    "grv",
+                    "hdml",
+                    "hqx",
+                    "ini",
+                    "mov",
+                    "mp3",
+                    "nc",
+                    "pct",
+                    "ppc",
+                    "pws",
+                    "swa",
+                    "swf",
+                    "txt",
+                    "vbs",
+                    "w32",
+                    "wav",
+                    "midi",
+                    "wbmp",
+                    "wml",
+                    "wmlc",
+                    "wmls",
+                    "wmlsc",
+                    "xsd",
+                    "zip",
+                    "pict",
+                    "tif",
+                    "tiff",
+                    "mid",
+                    "jxr",
+                    "jar"
+                  ]
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "CSS and JavaScript",
+            "children": [],
+            "behaviors": [],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Fonts",
+            "children": [],
+            "behaviors": [],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Images",
+            "children": [],
+            "behaviors": [],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Files",
+            "children": [],
+            "behaviors": [],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "HTML Pages",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "caching",
+                "options": {
+                  "behavior": "NO_STORE"
+                }
+              },
+              {
+                "name": "cacheKeyQueryParams",
+                "options": {
+                  "behavior": "IGNORE",
+                  "parameters": [
+                    "gclid",
+                    "fbclid",
+                    "utm_source",
+                    "utm_campaign",
+                    "utm_medium",
+                    "utm_content"
+                  ],
+                  "exactMatch": true
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "fileExtension",
+                "options": {
+                  "matchOperator": "IS_ONE_OF",
+                  "values": [
+                    "html",
+                    "htm",
+                    "php",
+                    "jsp",
+                    "aspx",
+                    "EMPTY_STRING"
+                  ],
+                  "matchCaseSensitive": false
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Redirects",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "cacheRedirect",
+                "options": {
+                  "enabled": "false"
+                }
+              },
+              {
+                "name": "chaseRedirects",
+                "options": {
+                  "enabled": false
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "POST responses",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "cachePost",
+                "options": {
+                  "enabled": false
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "GraphQL",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "graphqlCaching",
+                "options": {
+                  "enabled": false
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "path",
+                "options": {
+                  "matchOperator": "MATCHES_ONE_OF",
+                  "values": [
+                    "/graphql"
+                  ],
+                  "matchCaseSensitive": false,
+                  "normalize": false
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Uncacheable objects",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "downstreamCache",
+                "options": {
+                  "behavior": "BUST"
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "cacheability",
+                "options": {
+                  "matchOperator": "IS_NOT",
+                  "value": "CACHEABLE"
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all"
+          }
+        ],
+        "behaviors": [
+          {
+            "name": "caching",
+            "options": {
+              "behavior": "NO_STORE"
+            }
+          },
+          {
+            "name": "tieredDistribution",
+            "options": {
+              "enabled": true,
+              "tieredDistributionMap": "CH2"
+            }
+          },
+          {
+            "name": "validateEntityTag",
+            "options": {
+              "enabled": false
+            }
+          },
+          {
+            "name": "removeVary",
+            "options": {
+              "enabled": false
+            }
+          },
+          {
+            "name": "cacheError",
+            "options": {
+              "enabled": true,
+              "ttl": "10s",
+              "preserveStale": true
+            }
+          },
+          {
+            "name": "cacheKeyQueryParams",
+            "options": {
+              "behavior": "INCLUDE_ALL_ALPHABETIZE_ORDER"
+            }
+          },
+          {
+            "name": "prefreshCache",
+            "options": {
+              "enabled": true,
+              "prefreshval": 90
+            }
+          },
+          {
+            "name": "downstreamCache",
+            "options": {
+              "behavior": "ALLOW",
+              "allowBehavior": "LESSER",
+              "sendHeaders": "CACHE_CONTROL_AND_EXPIRES",
+              "sendPrivate": false
+            }
+          }
+        ],
+        "criteria": [],
+        "criteriaMustSatisfy": "all"
+      },
+      {
+        "name": "Strengthen security",
+        "children": [
+          {
+            "name": "Allowed methods",
+            "children": [
+              {
+                "name": "POST",
+                "children": [],
+                "behaviors": [
+                  {
+                    "name": "allowPost",
+                    "options": {
+                      "allowWithoutContentLength": false,
+                      "enabled": true
+                    }
+                  }
+                ],
+                "criteria": [],
+                "criteriaMustSatisfy": "all"
+              },
+              {
+                "name": "OPTIONS",
+                "children": [],
+                "behaviors": [
+                  {
+                    "name": "allowOptions",
+                    "options": {
+                      "enabled": true
+                    }
+                  }
+                ],
+                "criteria": [],
+                "criteriaMustSatisfy": "all"
+              },
+              {
+                "name": "PUT",
+                "children": [],
+                "behaviors": [
+                  {
+                    "name": "allowPut",
+                    "options": {
+                      "enabled": true
+                    }
+                  }
+                ],
+                "criteria": [],
+                "criteriaMustSatisfy": "all"
+              },
+              {
+                "name": "DELETE",
+                "children": [],
+                "behaviors": [
+                  {
+                    "name": "allowDelete",
+                    "options": {
+                      "enabled": true,
+                      "allowBody": false
+                    }
+                  }
+                ],
+                "criteria": [],
+                "criteriaMustSatisfy": "all"
+              },
+              {
+                "name": "PATCH",
+                "children": [],
+                "behaviors": [
+                  {
+                    "name": "allowPatch",
+                    "options": {
+                      "enabled": true
+                    }
+                  }
+                ],
+                "criteria": [],
+                "criteriaMustSatisfy": "all"
+              }
+            ],
+            "behaviors": [
+              {
+                "name": "allHttpInCacheHierarchy",
+                "options": {
+                  "enabled": true
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Obfuscate debug info",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "cacheTagVisible",
+                "options": {
+                  "behavior": "PRAGMA_HEADER"
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Obfuscate backend info",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "modifyOutgoingResponseHeader",
+                "options": {
+                  "action": "DELETE",
+                  "standardDeleteHeaderName": "OTHER",
+                  "customHeaderName": "X-Powered-By"
+                }
+              },
+              {
+                "name": "modifyOutgoingResponseHeader",
+                "options": {
+                  "action": "DELETE",
+                  "standardDeleteHeaderName": "OTHER",
+                  "customHeaderName": "Server"
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "requestHeader",
+                "options": {
+                  "headerName": "X-Akamai-Debug",
+                  "matchCaseSensitiveValue": true,
+                  "matchOperator": "IS_NOT_ONE_OF",
+                  "matchWildcardName": false,
+                  "matchWildcardValue": false,
+                  "values": [
+                    "true"
+                  ]
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "HSTS",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "httpStrictTransportSecurity",
+                "options": {
+                  "enable": false
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          }
+        ],
+        "behaviors": [],
+        "criteria": [],
+        "criteriaMustSatisfy": "all"
+      },
+      {
+        "name": "Increase availability",
+        "children": [
+          {
+            "name": "Simulate failover",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "breakConnection",
+                "options": {
+                  "enabled": true
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "contentDeliveryNetwork",
+                "options": {
+                  "matchOperator": "IS",
+                  "network": "STAGING"
+                }
+              },
+              {
+                "name": "requestHeader",
+                "options": {
+                  "headerName": "breakconnection",
+                  "matchOperator": "IS_ONE_OF",
+                  "values": [
+                    "Your-Secret-Here"
+                  ],
+                  "matchWildcardName": false,
+                  "matchWildcardValue": false,
+                  "matchCaseSensitiveValue": true
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Site failover",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "failAction",
+                "options": {
+                  "enabled": false
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "originTimeout",
+                "options": {
+                  "matchOperator": "ORIGIN_TIMED_OUT"
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all"
+          },
+          {
+            "name": "Origin health",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "healthDetection",
+                "options": {
+                  "retryCount": 3,
+                  "retryInterval": "10s",
+                  "maximumReconnects": 3
+                }
+              }
+            ],
+            "criteria": [],
+            "criteriaMustSatisfy": "all"
+          }
+        ],
+        "behaviors": [
+          {
+            "name": "scriptManagement",
+            "options": {
+              "enabled": true,
+              "serviceworker": "NO_SERVICE_WORKER"
+            }
+          }
+        ],
+        "criteria": [],
+        "criteriaMustSatisfy": "all"
+      },
+      {
+        "name": "Minimize payload",
+        "children": [
+          {
+            "name": "Compressible Objects",
+            "children": [],
+            "behaviors": [
+              {
+                "name": "gzipResponse",
+                "options": {
+                  "behavior": "ALWAYS"
+                }
+              }
+            ],
+            "criteria": [
+              {
+                "name": "contentType",
+                "options": {
+                  "matchCaseSensitive": false,
+                  "matchOperator": "IS_ONE_OF",
+                  "matchWildcard": true,
+                  "values": [
+                    "application/*javascript*",
+                    "application/*json*",
+                    "application/*xml*",
+                    "application/text*",
+                    "application/vnd-ms-fontobject",
+                    "application/vnd.microsoft.icon",
+                    "application/x-font-opentype",
+                    "application/x-font-truetype",
+                    "application/x-font-ttf",
+                    "application/xmlfont/eot",
+                    "font/eot",
+                    "font/opentype",
+                    "font/otf",
+                    "image/svg+xml",
+                    "image/vnd.microsoft.icon",
+                    "image/x-icon",
+                    "text/*",
+                    "application/octet-stream*",
+                    "application/x-font-eot*",
+                    "font/ttf",
+                    "application/font-ttf",
+                    "application/font-sfnt",
+                    "application/x-tgif"
+                  ]
+                }
+              }
+            ],
+            "criteriaMustSatisfy": "all"
+          }
+        ],
+        "behaviors": [],
+        "criteria": [],
+        "criteriaMustSatisfy": "all"
+      }
+    ],
+    "behaviors": [
+      {
+        "name": "origin",
+        "options": {
+          "cacheKeyHostname": "REQUEST_HOST_HEADER",
+          "compress": true,
+          "enableTrueClientIp": true,
+          "trueClientIpHeader": "True-Client-IP",
+          "trueClientIpClientSetting": false,
+          "forwardHostHeader": "REQUEST_HOST_HEADER",
+          "hostname": "terraform02-origin.shki.tokyo",
+          "httpPort": 80,
+          "httpsPort": 443,
+          "originSni": true,
+          "verificationMode": "PLATFORM_SETTINGS",
+          "originType": "CUSTOMER",
+          "useUniqueCacheKey": false
+        }
+      },
+      { 
+          "name": "cpCode",
+          "options": {
+              "value": {
+                  "id": 1167068
+              }
+          }
+      }
+    ],
+    "options": {
+      "is_secure": false
+    }
+  },
+  "warnings": [
+    {
+      "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/validation_message.ssl_delegate_warning_rotate",
+      "errorLocation": "#/rules/behaviors/0",
+      "detail": "If your `Origin Server` uses HTTPS, make sure to follow <a href=\"/dl/property-manager/property-manager-help/csh_lookup.html?id=PM_0034\" target=\"_blank\">this procedure</a> to avoid a service outage or a security breach when you rotate your origin's certificate."
+    },
+    {
+      "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/validation_message.general_warning",
+      "errorLocation": "#/rules/children/1/children/2/criteria/0",
+      "detail": "Matching on `Request Type` requires thorough understanding of the way Akamai Edge servers process requests.  If you are unsure about how this will affect your property, please contact your Akamai Technical representative, and please test thoroughly on staging before activating on production."
+    },
+    {
+      "type": "https://problems.luna.akamaiapis.net/papi/v0/validation/need_feature",
+      "errorLocation": "#/rules/children/4/children/3/behaviors/0",
+      "detail": "Enabling preload makes future downgrade to HTTP difficult."
+    },
+    {
+      "title": "Unstable rule format",
+      "type": "https://problems.luna.akamaiapis.net/papi/v0/unstable_rule_format",
+      "detail": "This property is using `latest` rule format, which is designed to reflect interface changes immediately. We suggest converting the property to a stable rule format such as `v2020-11-02` to minimize the risk of interface changes breaking your API client program.",
+      "currentRuleFormat": "latest",
+      "suggestedRuleFormat": "v2020-11-02"
+    }
+  ],
+  "ruleFormat": "latest"
+}
