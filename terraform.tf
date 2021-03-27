@@ -50,16 +50,16 @@ data "akamai_group" "default" {
 # EdgeDNS CNAME record
 resource "akamai_dns_record" "a_record" {
   zone       = "shki.tokyo"
-  name       = "terraform02.ff-duma.shki.tokyo"
+  name       = "terraform01.ff-duma.shki.tokyo"
   recordtype = "CNAME"
   ttl        = "600"
-  target     = ["terraform02.ff-duma.shki.tokyo.edgesuite.net."]
+  target     = ["terraform01.ff-duma.shki.tokyo.edgesuite.net."]
 }
 
 # EdgeDNS Origin A record
 resource "akamai_dns_record" "a_record-origin_hostname" {
   zone       = "shki.tokyo"
-  name       = "terraform02-origin.shki.tokyo"
+  name       = "terraform01-origin.shki.tokyo"
   recordtype = "A"
   ttl        = "600"
   target     = ["13.112.26.181"]
@@ -78,20 +78,20 @@ resource "akamai_edge_hostname" "default" {
   product_id    = "prd_Fresca"
   contract_id   = data.akamai_contract.default.id
   group_id      = data.akamai_group.default.id
-  edge_hostname = "terraform02.ff-duma.shki.tokyo.edgesuite.net"
+  edge_hostname = "terraform01.ff-duma.shki.tokyo.edgesuite.net"
   ip_behavior   = "IPV6_COMPLIANCE"
   certificate   = "105356"
 }
 
 # DP Creation
 resource "akamai_property" "default" {
-  name         = "terraform02.ff-duma.shki.tokyo"
+  name         = "terraform01.ff-duma.shki.tokyo"
   product_id   = "prd_Fresca"
   contract_id  = data.akamai_contract.default.id
   group_id     = data.akamai_group.default.id
 
   hostnames  = {
-    "terraform02.ff-duma.shki.tokyo" = akamai_edge_hostname.default.edge_hostname
+    "terraform01.ff-duma.shki.tokyo" = akamai_edge_hostname.default.edge_hostname
   }
 
   rule_format = "latest"
