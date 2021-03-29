@@ -10,26 +10,18 @@ terraform {
 }
 
 # Variables
-variable "AKAMAI_JP_CLIENT_SECRET" {
-  type = string
-}
-variable "AKAMAI_JP_HOST" {
-  type = string
-}
-variable "AKAMAI_JP_ACCESS_TOKEN" {
-  type = string
-}
-variable "AKAMAI_JP_CLIENT_TOKEN" {
-  type = string
-}
+variable "AKAMAI_JP_CLIENT_SECRET" {}
+variable "AKAMAI_JP_HOST" {}
+variable "AKAMAI_JP_ACCESS_TOKEN" {}
+variable "AKAMAI_JP_CLIENT_TOKEN" {}
 
 # Configure the Akamai Provider
 provider "akamai" {
   config {
-    client_secret = var.AKAMAI_JP_CLIENT_SECRET
-    host = var.AKAMAI_JP_HOST
-    access_token = var.AKAMAI_JP_ACCESS_TOKEN
-    client_token = var.AKAMAI_JP_CLIENT_TOKEN
+    client_secret = "${var.AKAMAI_JP_CLIENT_SECRET}"
+    host = "${var.AKAMAI_JP_HOST}"
+    access_token = "${var.AKAMAI_JP_ACCESS_TOKEN}"
+    client_token = "${var.AKAMAI_JP_CLIENT_TOKEN}"
   }
 }
 
