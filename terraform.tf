@@ -16,12 +16,12 @@ variable "AKAMAI_JP_ACCESS_TOKEN" {}
 variable "AKAMAI_JP_CLIENT_TOKEN" {}
 
 # Configure the Akamai Provider
-provider "akamai" {}
-  #AKAMAI_JP_CLIENT_SECRET = "${var.AKAMAI_JP_CLIENT_SECRET}"
-  #AKAMAI_JP_HOST = "${var.AKAMAI_JP_HOST}"
-  #AKAMAI_JP_ACCESS_TOKEN = "${var.AKAMAI_JP_ACCESS_TOKEN}"
-  #AKAMAI_JP_CLIENT_TOKEN = "${var.AKAMAI_JP_CLIENT_TOKEN}"
-
+provider "akamai" {
+  AKAMAI_JP_CLIENT_SECRET = "${var.AKAMAI_JP_CLIENT_SECRET}"
+  AKAMAI_JP_HOST = "${var.AKAMAI_JP_HOST}"
+  AKAMAI_JP_ACCESS_TOKEN = "${var.AKAMAI_JP_ACCESS_TOKEN}"
+  AKAMAI_JP_CLIENT_TOKEN = "${var.AKAMAI_JP_CLIENT_TOKEN}"
+}
 
 # Rule Tree
 data "local_file" "rules" {
