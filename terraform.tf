@@ -35,42 +35,10 @@ data "akamai_group" "default" {
   contract_id = "ctr_1-GNLXD"
 }
 
-data "akamai_iam_contact_types" "contact_types" {
+# Declear network-lists
+data "akamai_networklist_network_lists" "network_lists_filter" {
 }
 
-output "supported_contact_types" {
-  value = data.akamai_iam_contact_types.contact_types
-}
-
-data "akamai_iam_countries" "countries" {
-}
-
-output "supported_countries" {
-  value = data.akamai_iam_countries.countries
-}
-
-data "akamai_iam_groups" "my-groups" {}
-
-output "groups" {
-  value = data.akamai_iam_groups.my-groups
-}
-
-data "akamai_iam_roles" "my-roles" {}
-
-output "roles" {
-  value = data.akamai_iam_roles.my-roles
-}
-
-data "akamai_iam_supported_langs" "supported_langs" {
-}
-
-output "supported_supported_langs" {
-  value = data.akamai_iam_supported_langs.supported_langs
-}
-
-data "akamai_iam_timeout_policies" "timeout_policies" {
-}
-
-output "supported_timeout_policies" {
-  value = data.akamai_iam_timeout_policies.timeout_policies
+output "network_lists_text" {
+  value = data.akamai_networklist_network_lists.network_lists_filter.output_text
 }
