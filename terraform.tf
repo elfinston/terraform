@@ -31,7 +31,7 @@ data "akamai_contract" "default" {
 }
 
 data "akamai_group" "default" {
-  group_name  = var.group_name
+  group_name  = "shki"
   contract_id = "ctr_1-GNLXD"
 }
 
