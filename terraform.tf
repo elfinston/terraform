@@ -18,10 +18,10 @@ variable "AKAMAI_JP_CLIENT_TOKEN" {}
 # Configure the Akamai Provider
 provider "akamai" {
   config {
-    AKAMAI_CLIENT_SECRET = "${var.AKAMAI_JP_CLIENT_SECRET}"
-    AKAMAI_HOST = "${var.AKAMAI_JP_HOST}"
-    AKAMAI_ACCESS_TOKEN = "${var.AKAMAI_JP_ACCESS_TOKEN}"
-    AKAMAI_CLIENT_TOKEN = "${var.AKAMAI_JP_CLIENT_TOKEN}"
+    client_secret = "${var.AKAMAI_JP_CLIENT_SECRET}"
+    host = "${var.AKAMAI_JP_HOST}"
+    access_token = "${var.AKAMAI_JP_ACCESS_TOKEN}"
+    client_token = "${var.AKAMAI_JP_CLIENT_TOKEN}"
   }
 }
 
