@@ -9,6 +9,12 @@ terraform {
   }
 }
 
+# Variables
+variable "AKAMAI_JP_CLIENT_SECRET" {}
+variable "AKAMAI_JP_HOST" {}
+variable "AKAMAI_JP_ACCESS_TOKEN" {}
+variable "AKAMAI_JP_CLIENT_TOKEN" {}
+
 # Configure the Akamai Provider
 provider "akamai" {
   config {
