@@ -9,18 +9,14 @@ terraform {
   }
 }
 
-# Variables
-variable "AKAMAI_JP_CLIENT_SECRET" {}
-variable "AKAMAI_JP_HOST" {}
-variable "AKAMAI_JP_ACCESS_TOKEN" {}
-variable "AKAMAI_JP_CLIENT_TOKEN" {}
-
 # Configure the Akamai Provider
 provider "akamai" {
-  AKAMAI_CLIENT_SECRET = "${var.AKAMAI_JP_CLIENT_SECRET}"
-  AKAMAI_HOST = "${var.AKAMAI_JP_HOST}"
-  AKAMAI_ACCESS_TOKEN = "${var.AKAMAI_JP_ACCESS_TOKEN}"
-  AKAMAI_CLIENT_TOKEN = "${var.AKAMAI_JP_CLIENT_TOKEN}"
+  config {
+    AKAMAI_CLIENT_SECRET = "${var.AKAMAI_JP_CLIENT_SECRET}"
+    AKAMAI_HOST = "${var.AKAMAI_JP_HOST}"
+    AKAMAI_ACCESS_TOKEN = "${var.AKAMAI_JP_ACCESS_TOKEN}"
+    AKAMAI_CLIENT_TOKEN = "${var.AKAMAI_JP_CLIENT_TOKEN}"
+  }
 }
 
 # Contract and Group
