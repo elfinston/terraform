@@ -40,7 +40,6 @@ data "local_file" "rules" {
   filename = "rules.json"
 }
 
-/*
 # DP Creation
 resource "akamai_property" "default" {
   name         = "test02.essl.shki.tokyo"
@@ -55,9 +54,7 @@ resource "akamai_property" "default" {
   rule_format = "latest"
   rules = data.local_file.rules.content
 }
-*/
 
-/*
 # Activation Staging
 resource "akamai_property_activation" "staging-activation" {
   property_id = akamai_property.default.id
@@ -65,7 +62,6 @@ resource "akamai_property_activation" "staging-activation" {
   network = "STAGING"
   contact = ["shki@akamai.com"]
 }
-*/
   
 /*
 # Activation Production
