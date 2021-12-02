@@ -1,10 +1,10 @@
 # Load module
 terraform {
-  required_version = ">=1.0.7"
+  required_version = ">=1.0.11"
   required_providers {
     akamai = {
       source = "akamai/akamai"
-      version = ">=1.7.0"
+      version = ">=1.8.0"
     }
   }
 }
