@@ -58,7 +58,12 @@ resource "akamai_property" "default" {
     cert_provisioning_type = "CPS_MANAGED"
   }  
 #*/
-  rule_format = "latest"
+  hostnames {
+    cname_from = "shki.tokyo.lalabo.net"
+    cname_to = "shki.tokyo.lalabo.net.edgekey.net"
+    cert_provisioning_type = "CPS_MANAGED"
+  }  
+#*/  rule_format = "latest"
   rules = data.local_file.rules.content
 }
 
