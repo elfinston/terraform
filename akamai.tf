@@ -65,7 +65,7 @@ resource "akamai_property" "default" {
 # Activation Staging
 resource "akamai_property_activation" "staging-activation" {
   property_id = akamai_property.default.id
-  version = 1
+  version = 2
   network = "STAGING"
   contact = ["shki@akamai.com"]
 }
