@@ -70,7 +70,7 @@ resource "akamai_property_activation" "staging-activation" {
   contact = ["shki@akamai.com"]
 }
 
-#/*
+/*
 # Activation Production
 resource "akamai_property_activation" "production-activation" {
   property_id = akamai_property.default.id
@@ -78,4 +78,4 @@ resource "akamai_property_activation" "production-activation" {
   network = "PRODUCTION"
   contact = ["shki@akamai.com"]
 }
-#*/
+*/
