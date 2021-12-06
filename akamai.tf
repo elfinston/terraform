@@ -51,6 +51,11 @@ resource "akamai_property" "default" {
     cname_to = "test02.essl.shki.tokyo.edgekey.net"
     cert_provisioning_type = "CPS_MANAGED"
   }
+  hostnames {
+    cname_from = "test02-essl.shki.tokyo"
+    cname_to = "test02.essl.shki.tokyo.edgekey.net"
+    cert_provisioning_type = "CPS_MANAGED"
+  }  
   rule_format = "latest"
   rules = data.local_file.rules.content
 }
