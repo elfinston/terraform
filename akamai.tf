@@ -47,23 +47,11 @@ resource "akamai_property" "default" {
   contract_id  = data.akamai_contract.default.id
   group_id     = data.akamai_group.default.id
   hostnames {
-    cname_from = "test02.essl.shki.tokyo"
-    cname_to = "test02.essl.shki.tokyo.edgekey.net"
+    cname_from = "test02-essl.shki.tokyo"
+    cname_to = "test02-essl.shki.tokyo.edgekey.net"
     cert_provisioning_type = "CPS_MANAGED"
   }
-#/*
-  hostnames {
-    cname_from = "test02-essl.shki.tokyo"
-    cname_to = "test02.essl.shki.tokyo.edgekey.net"
-    cert_provisioning_type = "CPS_MANAGED"
-  }  
-#*/
-  hostnames {
-    cname_from = "shki.tokyo.lalabo.net"
-    cname_to = "shki.tokyo.lalabo.net.edgekey.net"
-    cert_provisioning_type = "CPS_MANAGED"
-  }  
-#*/  rule_format = "latest"
+  rule_format = "latest"
   rules = data.local_file.rules.content
 }
 
