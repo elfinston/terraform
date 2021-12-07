@@ -55,6 +55,7 @@ resource "akamai_property" "default" {
   rules = data.local_file.rules.content
 }
 
+
 # Activation Staging
 resource "akamai_property_activation" "staging-activation" {
   property_id = akamai_property.default.id
