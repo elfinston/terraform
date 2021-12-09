@@ -32,7 +32,7 @@ data "akamai_contract" "default" {
 
 data "akamai_group" "default" {
   group_name  = "shki"
-  contract_id = "data.akamai_contract.default.id"
+  contract_id = data.akamai_contract.default.id
 }
 
 #Rule File
