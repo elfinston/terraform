@@ -1,4 +1,11 @@
 {
+    "accountId": "act_1-BGIGR",
+    "contractId": "ctr_1-GNLXD",
+    "groupId": "grp_179232",
+    "propertyName": "test02.essl.shki.tokyo",
+    "propertyVersion": 5,
+    "ruleFormat": "latest",
+    "propertyId": "prp_697923",
     "rules": {
         "name": "default",
         "children": [
@@ -250,8 +257,7 @@
                 "comments": "Control the settings related to improving the performance of delivering objects to your users."
             },
             {
-                "name": "
-                origin",
+                "name": "Offload origin",
                 "children": [
                     {
                         "name": "CSS and JavaScript",
@@ -598,8 +604,7 @@
                     {
                         "name": "tieredDistribution",
                         "options": {
-                            "enabled": true,
-                            "tieredDistributionMap": "CH2"
+                            "enabled": true
                         }
                     },
                     {
@@ -1076,14 +1081,14 @@
             {
                 "name": "tieredDistribution",
                 "options": {
-                    "enabled": true,
-                    "tieredDistributionMap": "CHAPAC"
+                    "enabled": true
                 }
             }
         ],
         "options": {
             "is_secure": true
         },
+        "variables": [],
         "comments": "The Default Rule template contains all the necessary and recommended features. Rules are evaluated from top to bottom and the last matching rule wins."
     }
 }
