@@ -250,7 +250,8 @@
                 "comments": "Control the settings related to improving the performance of delivering objects to your users."
             },
             {
-                "name": "Offload origin",
+                "name": "
+                origin",
                 "children": [
                     {
                         "name": "CSS and JavaScript",
@@ -261,7 +262,7 @@
                                 "options": {
                                     "behavior": "MAX_AGE",
                                     "mustRevalidate": false,
-                                    "ttl": "11m"
+                                    "ttl": "10m"
                                 }
                             }
                         ],
