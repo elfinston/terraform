@@ -1,11 +1,4 @@
 {
-    "accountId": "act_1-BGIGR",
-    "contractId": "ctr_1-GNLXD",
-    "groupId": "grp_179232",
-    "propertyId": "prp_697923",
-    "propertyName": "test02.essl.shki.tokyo",
-    "propertyVersion": 3,
-    "etag": "47479cf31edf970e7a9c5fc685701ef4ea4830cf",
     "rules": {
         "name": "default",
         "children": [
