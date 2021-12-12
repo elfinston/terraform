@@ -55,15 +55,13 @@ resource "akamai_property" "default" {
   rules = data.local_file.rules.content
 }
 
-/*
 # Activation Staging
 resource "akamai_property_activation" "staging-activation" {
   property_id = akamai_property.default.id
-  version = 4
+  version = 5
   network = "STAGING"
   contact = ["shki@akamai.com"]
 }
-*/
 
 # Activation Production
 resource "akamai_property_activation" "production-activation" {
